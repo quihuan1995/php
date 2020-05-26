@@ -1,5 +1,11 @@
 <?php
 include_once('header.php');
+if(isset($_POST['sbm'])){
+    $cat_name=$_POST['cat_name'];
+    $sql="insert into category (cat_name) values ('$cat_name')";
+    mysqli_query($conn,$sql);
+    header('location:category.php');
+}
 ?>
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
@@ -21,7 +27,7 @@ include_once('header.php');
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="col-md-8">
-                        	<div class="alert alert-danger">Danh mục đã tồn tại !</div>
+<!--                        	<div class="alert alert-danger">Danh mục đã tồn tại !</div>-->
                             <form role="form" method="post">
                             <div class="form-group">
                                 <label>Tên danh mục:</label>

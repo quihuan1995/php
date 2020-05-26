@@ -45,7 +45,7 @@ include_once('header.php');
 							else{
 								$page=1;
 							}
-							$rows_per_page=5;
+							$rows_per_page=10;
 							$per_row= $page*$rows_per_page-$rows_per_page;
 							
 							$total_rows=mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user"));
@@ -79,10 +79,16 @@ include_once('header.php');
                                     <td style=""><?php echo $row['user_id']; ?></td>
                                     <td style=""><?php echo $row['user_full']; ?></td>
                                     <td style=""><?php echo $row['user_mail']; ?></td>
-                                    <td><span class="label label-danger"><?php echo $row['user_level']; ?></span></td>
+                                    <td><?php
+                                        if($row['user_level'] == 1){
+                                            echo '<span class="label label-danger">Admin</span>';
+                                        }else {
+                                            echo '<span class="label label-primary">Member</span>';
+                                        }
+                                        ?></td>
                                     <td class="form-group">
-                                        <a href="edit_user.php" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
-                                        <a href="/" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                                        <a href="edit_user.php?user_id=<?php echo $row['user_id']; ?>" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                                        <a onclick="return del()" href="del_user.php?user_id=<?php echo $row['user_id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                                     </td>
                                 </tr>
                                 <?php
@@ -106,7 +112,11 @@ include_once('header.php');
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-table.js"></script>	
-
+<script>
+    function del(){
+        return confirm('want to del this user ?');
+        }
+</script>
 <?php
 include_once('footer.php');
 ?>

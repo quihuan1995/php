@@ -43,7 +43,7 @@ include_once('header.php');
 							else{
 								$page=1;
 							}
-							$rows_per_page=5;
+							$rows_per_page=10;
 							$per_row= $page*$rows_per_page-$rows_per_page;
 							
 							$total_rows=mysqli_num_rows(mysqli_query($conn, "SELECT * FROM category"));
@@ -75,8 +75,8 @@ include_once('header.php');
 											<td style=""><?php echo $row['cat_id']; ?></td>
 											<td style=""><?php echo $row['cat_name']; ?></td>
 											<td class="form-group">
-												<a href="edit_category.php" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
-												<a href="edit_category.php" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+												<a href="edit_category.php?cat_id=<?php echo $row['cat_id']; ?>" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+												<a onclick="return del()" href="del_category.php?cat_id=<?php echo $row['cat_id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
 											</td>
 										</tr>
 										<?php
@@ -100,7 +100,11 @@ include_once('header.php');
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap-table.js"></script>	
-
+    <script>
+        function del(){
+            return confirm('want to del this category ?');
+        }
+    </script>
 <?php
 include_once('footer.php');
 ?>

@@ -1,5 +1,14 @@
 <?php
 include_once('header.php');
+if(isset($_POST['sbm'])){
+    $user_full=$_POST['user_full'];
+    $user_mail=$_POST['user_mail'];
+    $user_pass=$_POST['user_pass'];
+    $user_level=$_POST['user_level'];
+    $sql="insert into user (user_full,user_mail,user_pass,user_level) values ('$user_full','$user_mail','$user_pass','$user_level')";
+    mysqli_query($conn,$sql);
+    header('location:user.php');
+}
 ?>
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
@@ -21,7 +30,7 @@ include_once('header.php');
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="col-md-8">
-                            	<div class="alert alert-danger">Email đã tồn tại !</div>
+<!--                            	<div class="alert alert-danger">Email đã tồn tại !</div>-->
                                 <form role="form" method="post">
                                 <div class="form-group">
                                     <label>Họ & Tên</label>
