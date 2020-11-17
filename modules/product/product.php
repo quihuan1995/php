@@ -76,6 +76,7 @@ $row = mysqli_fetch_array($query);
                             </form> 
                         </div>
                     </div>
+
                     <!--	End Comment	-->  
                     
                     <?php
@@ -116,6 +117,6 @@ $row = mysqli_fetch_array($query);
                         <li class="page-item"><a class="page-link" href="#">Trang sau</a></li>
                     </ul> 
                 </div>               
-            </div>
-            
+           
+
            
